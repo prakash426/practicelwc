@@ -1,5 +1,4 @@
 import { LightningElement, track } from 'lwc';
-import PK_LOGO from '@salesforce/resourceUrl/logo';
 
 export default class PawanMovies extends LightningElement {
     @track movie;
