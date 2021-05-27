@@ -1,0 +1,16 @@
+<template>
+    <lightning-card variant="Narrow" title="Custom Lookup" icon-name = "standard:user">
+        <p class="slds-p-horizantal_snall">
+            <c-permission-set-finder 
+                obj-name = "Contact"
+                icon-name = "standard:contact"
+                label-name = "Contact"
+                placeholder = "Search"
+                field = {fields}
+                display-fields={displayFields}
+                onlookup={handleLookup}
+                >
+            </c-permission-set-finder>
+        </p>
+    </lightning-card>
+</template>

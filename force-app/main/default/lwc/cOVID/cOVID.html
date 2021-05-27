@@ -1,0 +1,67 @@
+<template>
+    <lightning-card title="COVID-19 Information" icon-name="custom:custom14">
+        
+        <lightning-record-view-form record-id={recordId} object-api-name="Candidate__c">
+        <div>
+            <lightning-output-field field-name="Name"></lightning-output-field>
+            <lightning-output-field field-name="COVID_Positive__c" ></lightning-output-field>
+        </div>
+        <template if:true = {isLoaded}>
+        <template if:true = {COVID_Positive}>
+        <h3>
+            Please read the instructions carefully and follow immediately
+        </h3>
+        <lightning-accordion class="example-accordion">
+            <lightning-accordion-section name="A" label="First Things First">
+               <p> 
+                   1. Contact the nearest doctor/hospital and book a bed with Oxygen supply. Use the following links for resource availability.
+                        a. bit.ly/CovidCareResources
+                        b. https://www.instagram.com/covidresourcesap/
+                   2. Isolate yourself in a separate room in your house away from family members.
+                   3. Ask your family members to sanitize their surroundings after your every contact
+               </p>
+
+
+            </lightning-accordion-section>
+            <lightning-accordion-section name="B" label="Medications to be taken">
+                           <p> 
+                               1. Tab Doxycycline 100mg
+                               2. Tab IVERMECTIN
+                               3. Tab Montac-LC
+                               4. Tab Dolo 650mg
+                               5. Tab Limcee
+                               6. Tab zincovit
+                               7. Tab Eliquis
+                           </p>
+            
+            
+            </lightning-accordion-section>
+            <lightning-accordion-section name="C" label="Home Remidies">
+                            <p>
+                                1. Ginger water with lemon
+                                2. Vaporiser
+                                3. Camphor powder for healthy breathing
+                                4. Dry fruits
+                                5. Warm water with rock salt for threat cleansing
+                                
+                            </p>
+                        
+                        
+            </lightning-accordion-section>
+
+        </lightning-accordion>
+        
+        </template>
+        </template>
+
+        <template if:true={isLoaded}>
+            <template if:false={COVID_Positive}>
+                <h3>
+                    Kindly wear a mask| Maintain Social Distance| Sanitize yourself regularly|Consume Healthy Food|Get Vaccinated when it's your turn|Get tested at least once in a month
+                </h3>
+            </template>
+        </template>
+        </lightning-record-view-form>
+        
+    </lightning-card>
+</template>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SARS_CoV_2__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This information will be available on your RT-PCR test.</inlineHelpText>
+    <label>SARS-CoV-2</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Detected</fullName>
+                <default>false</default>
+                <label>Detected</label>
+            </value>
+            <value>
+                <fullName>Not Detected</fullName>
+                <default>false</default>
+                <label>Not Detected</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
