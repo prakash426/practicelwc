@@ -1,3 +1,40 @@
 <template>
-    
+    <div class="app slds-p-around_x-large">
+        <div class="bg">
+            <h1 class="slds-text-heading_large">{title}</h1>
+
+            <lightning-combobox name="year" label="Select Game Year" value={value} options={options}
+                variant=label-inline>
+            </lightning-combobox>
+
+            <lightning-textarea name="dateInput" readonly value="Match Date" label="Date">
+            </lightning-textarea>
+
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span>
+                        <lightning-textarea name="teamA" value={valueA} label="Team A">
+                        </lightning-textarea>
+                    </span>
+                </div>
+                <h3> Vs </h3>
+                <div class="slds-col">
+                    <span>
+                        <lightning-textarea name="teamB" value={valueB} label="Team B">
+                        </lightning-textarea>
+                    </span>
+                </div>
+            </div>
+
+            <br />
+
+            <lightning-button variant="destructive-text" label="Search" title="Destructive action with a lighter look"
+                onclick={handleSearchClick} class="slds-m-left_x-small">
+            </lightning-button>
+
+            <lightning-button variant="destructive-text" label="New Search"
+                title="Destructive action with a lighter look" onclick={handleClearClick} class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+    </div>
 </template>

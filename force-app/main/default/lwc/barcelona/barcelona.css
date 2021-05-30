@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(248, 242, 242);
+}
+
+
+.app {
+    background-color: #fafaf9;
+    height: 100vh;
+    overflow: scroll;
+}
+.bg{
+    background-image: url(https://lh3.googleusercontent.com/proxy/DfxF-GYtrRoa-_cnmGwgHrmErhYNa9hK0qPjLi6m4CFwHTAmcsFM4qurGzEZp9jn7N9hUs-7MflsLagcISaX0avwVvzbzTUaA7NfmYSNamr9c2UvQUI-lqD0qER2N4jSXV7e0pAjNGj8pHAkVTCHbI_BOg=s0-d);
+    height: 500px;
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+    
+
+}
