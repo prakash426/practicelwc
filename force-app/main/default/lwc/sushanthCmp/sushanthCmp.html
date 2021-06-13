@@ -1,0 +1,32 @@
+<template>
+    <div class=slds-box>
+        <div class=slds-m-around_medium>
+            <lightning-card>
+
+                <lightning-dual-listbox name="Movies" label="Select Hero" source-label="Available"
+                    selected-label="Selected" field-level-help="Select your preferred hero" options={options}
+                    onchange={handleChange}>
+                </lightning-dual-listbox>
+
+                <lightning-textarea name="input1" label="Movies of the Selected Hero" value={value}>
+                </lightning-textarea>
+                
+                <lightning-card>
+                    <lightning-button variant="brand" label="Select" title="Primary action" onclick={handleClick}
+                        class="slds-m-left_x-small"></lightning-button>
+                </lightning-card>
+
+                <lightning-record-view-form record-id="0011U00001lrz72QAA" object-api-name="Account">
+                <div class="slds-box">
+                    <lightning-output-field field-name="Name">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Phone">
+                    </lightning-output-field>
+                </div>
+                </lightning-record-view-form>
+
+            </lightning-card>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,59 @@
+<template>
+    <lightning-card title="My Contact Record" icon-name="standard:contact">
+        <template if:true={contact.data}>
+            <div class="slds-box slds-box_x-small">
+                <p>
+                    {title}. {name}
+                </p>
+                </div>
+                <br/>
+                <div class="slds-box slds-box_x-small">
+                    <p>
+                        Phone: <lightning-formatted-phone value={phone}></lightning-formatted-phone>
+                    </p>
+                </div>
+                <br/>
+                <div class="slds-box slds-box_x-small">
+                    <p>
+                        Email: <lightning-formatted-email value={email}></lightning-formatted-email>
+                    </p>
+                </div>
+                
+            
+        </template>
+        <template if:true={contact.error}>
+            <c-error-panel errors={contact.error}></c-error-panel>
+        </template>
+    </lightning-card>
+    <lightning-card>
+        <lightning-record-view-form record-id={recordId} onsubmit={handleSubmit} object-api-name="Contact">
+            <div class="slds-box slds-theme_default">
+                <lightning-output-field field-name = "Title">
+                </lightning-output-field>
+                <lightning-output-field field-name="Name">
+                </lightning-output-field>
+                <lightning-output-field field-name="Phone">
+                </lightning-output-field>
+                <div class="slds-box slds-box_x-small">
+                <lightning-output-field field-name="Email">
+                </lightning-output-field>  
+                </div>     
+                
+            </div>
+        </lightning-record-view-form>
+    </lightning-card>
+    <template if:true={contacts.data}>
+        <template for:each={contacts.data} for:item="contact">
+            <a href="#" key={contact.Id} data-contact-id={contact.Id} onclick={handleSelect}>
+                <lightning-layout>
+                    <lightning-layout-item>
+                        <img src={contact.Picture__c} alt="Profile photo" />
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="horizontal-small">
+                        <p>{contact.Name}</p>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </a>
+        </template>
+    </template>
+</template>

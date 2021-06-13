@@ -3,10 +3,11 @@
     <apiVersion>51.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
+        <target>lightning__HomePage</target>
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
-        <target>lightningCommunity__Page</target>
-        <target>lightning__HomePage</target>
         <target>lightning__Tab</target>
+        
+
     </targets>
 </LightningComponentBundle>

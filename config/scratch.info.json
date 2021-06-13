@@ -5,6 +5,7 @@
       "EnableSetPasswordInApi",
       "Communities",
       "AnalyticsAppEmbedded",
+      "Chatbot",
       "Knowledge",
       "LiveAgent",
       "LegacyLiveAgentRouting",
