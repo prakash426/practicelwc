@@ -1,0 +1,20 @@
+{
+  "orgName": "Prakash",
+  "sourceOrg": "00D1U000000rLoO",
+  "features": ["Communities", "ServiceCloud", "ForceComPlatform" , "LightningSalesConsole"],
+  "settings": {
+      "communitiesSettings": {
+          "enableNetworksEnabled": true
+      },
+      "mobileSettings": {
+          "enableS1EncryptedStoragePref2": true
+      },
+      "omniChannelSettings": {
+          "enableOmniChannel": true
+      },
+      "caseSettings": {
+          "systemUserEmail": "support@acme.com"
+      }
+      
+  }
+}
