@@ -1,0 +1,31 @@
+//
+//
+
+To put a link on page layout we can use the "HYPERLINK" and "IMAGE" functions in a Formula Field and display a link as a button or as an IMAGE
+
+Hyperlink - Visualforce Page|Lightning Page|Community Links|Knowledge Base Article Links|External Link
+
+IF(
+    /* Condition when to show the link*/
+    /* This is not a mandatory step*/
+    /* if you want the button to be appeared on Page Layout always then you can skip this and start from Line:*/
+    
+    HYPERLINK("Link you want to redirect", "Name of the Link", target)
+    
+
+    HYPERLINK("Link you want to redirect",IMAGE("Image URL","label",height, width), target)
+
+    IF
+    (
+        ISPICKVAL
+        (Company_Type__c ,"Electronics"),
+        HYPERLINK("https://www.google.com",  IMAGE("/resource/PK_LOGO", "Google",50,50) , "_self"),
+        NULL
+    )
+    
+    /*The URL can’t contain JavaScript*/
+    /*Use a relative link to link to Salesforce pages. If your full link is https://yourInstance./salesforce.com/00U/e, then its relative link is /00U/e.*/
+
+    /*Use the $Api variable to reference API URLs.
+    /*Be sure to remove the brackets, [ and ], from your formula before validating it.
+)
