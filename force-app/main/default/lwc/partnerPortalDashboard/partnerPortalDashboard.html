@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Partner Portal" icon-name="standard:partners">
+        <div class="slds-p-horizontal_medium">
+            <lightning-breadcrumbs class="slds-m-bottom_small">
+                <lightning-breadcrumb label="Home" onclick={handleCrumbHome}></lightning-breadcrumb>
+                <lightning-breadcrumb label="My Cases" onclick={handleCrumbCases}></lightning-breadcrumb>
+                <lightning-breadcrumb label={viewLabel}></lightning-breadcrumb>
+            </lightning-breadcrumbs>
+            <template if:true={isLoading}><lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner></template>
+            <template if:true={showCases}>
+                <lightning-datatable key-field="Id" data={cases} columns={caseColumns} onrowaction={handleCaseAction} hide-checkbox-column></lightning-datatable>
+                <div class="slds-m-top_small">
+                    <lightning-button label="New Proposal Flow" variant="brand" onclick={handleLaunchFlow} icon-name="utility:flow"></lightning-button>
+                </div>
+            </template>
+            <template if:true={showDetail}>
+                <lightning-button label="Back to cases" variant="neutral" onclick={handleBack} icon-name="utility:back" class="slds-m-bottom_small"></lightning-button>
+                <lightning-record-view-form record-id={selectedCaseId} object-api-name="Case" density="comfy">
+                    <lightning-output-field field-name="CaseNumber"></lightning-output-field>
+                    <lightning-output-field field-name="Subject"></lightning-output-field>
+                    <lightning-output-field field-name="Status"></lightning-output-field>
+                    <lightning-output-field field-name="Description"></lightning-output-field>
+                </lightning-record-view-form>
+                <h3 class="slds-text-heading_small slds-m-top_medium">Files</h3>
+                <template if:true={hasFiles}>
+                    <ul>
+                        <template for:each={files} for:item="file">
+                            <li key={file.Id}><a href={file.url}>{file.Title}</a> <span class="slds-text-body_small">({file.ContentSize})</span></li>
+                        </template>
+                    </ul>
+                </template>
+                <template if:false={hasFiles}><p class="slds-text-body_small">No files attached.</p></template>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_error slds-m-top_medium" role="alert">
+                    <h2>Portal load failed</h2><p>{errorMessage}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

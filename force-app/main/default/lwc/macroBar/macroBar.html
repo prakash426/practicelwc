@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Macros" icon-name="utility:lightning">
+        <div class="slds-p-horizontal_medium">
+            <template for:each={macros} for:item="macro">
+                <lightning-button key={macro.name} label={macro.label} variant="neutral"
+                    data-name={macro.name} onclick={handleRun} disabled={isLoading}
+                    class="slds-m-right_x-small slds-m-bottom_x-small"></lightning-button>
+            </template>
+            <template if:true={isLoading}><lightning-spinner alternative-text="Running macro" size="small"></lightning-spinner></template>
+            <template if:true={error}><p class="slds-text-color_error slds-m-top_small" role="alert">{errorMessage}</p></template>
+        </div>
+    </lightning-card>
+</template>

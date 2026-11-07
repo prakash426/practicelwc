@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Notification Center" icon-name="standard:announcement">
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:notification" alternative-text="Notifications" onclick={togglePanel}></lightning-button-icon>
+            <template if:true={hasUnread}><span class="slds-badge slds-badge_inverse badge-count" role="status">{unreadCount}</span></template>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template if:true={panelOpen}>
+                <template if:true={hasItems}>
+                    <ul>
+                        <template for:each={items} for:item="note">
+                            <li key={note.id} class="note-row">
+                                <button class="slds-button slds-button_neutral slds-button_stretch" data-id={note.id} lwc:on={note.handlers}>
+                                    <span class={note.dotClass}></span>
+                                    <strong class="slds-m-left_x-small">{note.title}</strong>
+                                    <span class="slds-m-left_x-small slds-text-body_small">{note.preview}</span>
+                                </button>
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="slds-m-top_small">
+                        <lightning-button label="Mark all read" variant="neutral" onclick={markAllRead}></lightning-button>
+                    </div>
+                </template>
+                <template if:false={hasItems}>
+                    <div class="slds-align_absolute-center slds-p-around_large empty-state">
+                        <lightning-icon icon-name="utility:check" size="large"></lightning-icon>
+                        <p class="slds-m-top_small">All caught up.</p>
+                    </div>
+                </template>
+            </template>
+            <template if:true={selected}>
+                <section role="dialog" aria-modal="true" aria-label="Notification detail" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header"><h2 class="slds-text-heading_medium">{selected.title}</h2></header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <p>{selected.body}</p>
+                            <template if:true={selected.targetId}>
+                                <div class="slds-m-top_small">
+                                    <lightning-button label="Open Record" variant="brand" onclick={openRecord}></lightning-button>
+                                </div>
+                            </template>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Close" onclick={closeDetail}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

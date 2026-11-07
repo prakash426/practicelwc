@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Discount Eligibility Checker" icon-name="standard:opportunity">
+        <div class="slds-p-horizontal_medium">
+            <lightning-record-view-form record-id={recordId} object-api-name="Opportunity" density="compact">
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-2"><lightning-output-field field-name="Name"></lightning-output-field></div>
+                    <div class="slds-col slds-size_1-of-2"><lightning-output-field field-name="Amount"></lightning-output-field></div>
+                    <div class="slds-col slds-size_1-of-2"><lightning-output-field field-name="StageName"></lightning-output-field></div>
+                    <div class="slds-col slds-size_1-of-2"><lightning-output-field field-name="AccountId"></lightning-output-field></div>
+                </div>
+            </lightning-record-view-form>
+            <div class="slds-m-top_medium">
+                <lightning-button label="Check Eligibility" variant="brand" onclick={handleCheck} disabled={isLoading}></lightning-button>
+            </div>
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Checking eligibility" size="medium"></lightning-spinner>
+            </template>
+            <template if:true={result}>
+                <div class={badgeClass} role="status">{result.eligibleAsText}</div>
+                <ul class="slds-m-top_small rule-list">
+                    <template for:each={result.rules} for:item="rule">
+                        <li key={rule.name} class="slds-m-bottom_x-small">
+                            <lightning-icon icon-name={rule.icon} size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                            <strong>{rule.name}:</strong> {rule.detail}
+                        </li>
+                    </template>
+                </ul>
+                <template if:true={result.eligible}>
+                    <p class="slds-m-top_small">Maximum discount: <strong>{result.maxDiscount}%</strong></p>
+                </template>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-top_medium" role="alert">
+                    <h2>Eligibility check failed</h2>
+                    <p>{errorMessage}</p>
+                    <lightning-button label="Retry" variant="neutral" onclick={handleCheck} class="slds-m-top_x-small"></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

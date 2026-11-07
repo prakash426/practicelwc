@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Cart Lines" icon-name="standard:product">
+        <div class="slds-p-horizontal_medium">
+            <template if:true={hasLines}>
+                <lightning-datatable key-field="Id" data={lines} columns={columns}
+                    draft-values={draftValues} onsave={handleSave}
+                    onrowaction={handleRowAction} hide-checkbox-column></lightning-datatable>
+            </template>
+            <template if:false={hasLines}>
+                <p class="slds-p-around_medium slds-text-align_center">Cart is empty.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

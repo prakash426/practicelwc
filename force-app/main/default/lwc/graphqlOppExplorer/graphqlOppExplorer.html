@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Opportunity Explorer (GraphQL)" icon-name="standard:opportunity">
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" onclick={handleRefresh}></lightning-button-icon>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <lightning-input label="Search opportunities" value={searchKey} onchange={handleSearch} type="search" field-level-help="Filters client-side after one GraphQL round trip"></lightning-input>
+            <template if:true={isLoading}><lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner></template>
+            <template if:true={hasRows}>
+                <lightning-tree-grid key-field="id" data={gridRows} columns={columns} class="slds-m-top_small"></lightning-tree-grid>
+                <p class="slds-m-top_small slds-text-body_small">One GraphQL query loaded {totalLines} line items across {totalOpps} opportunities.</p>
+            </template>
+            <template if:false={hasRows}>
+                <template if:false={isLoading}>
+                    <div class="slds-align_absolute-center slds-p-around_large empty-state">
+                        <lightning-icon icon-name="utility:search" size="large"></lightning-icon>
+                        <p class="slds-m-top_small">No opportunities match.</p>
+                    </div>
+                </template>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_error slds-m-top_medium" role="alert">
+                    <h2>GraphQL query failed</h2><p>{errorMessage}</p>
+                    <lightning-button label="Retry" variant="neutral" onclick={handleRefresh} class="slds-m-top_x-small"></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
