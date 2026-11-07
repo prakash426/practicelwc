@@ -1,0 +1,31 @@
+<template>
+  <lightning-card title={cardTitle} icon-name="standard:metrics">
+    <div class="slds-p-around_small widgets">
+      <template lwc:if={showSla}>
+        <div class="widget" data-testid="sla">
+          <p class="label">SLA</p>
+          <template lwc:if={slaText}>
+            <p class={slaClass}>{slaText}</p>
+          </template>
+          <template lwc:else>
+            <lightning-illustration variant="no_data:desert" size="extra-small"></lightning-illustration>
+            <p class="slds-text-color_weak">No deadline set</p>
+          </template>
+        </div>
+      </template>
+      <template lwc:if={showHealth}>
+        <div class="widget" data-testid="health">
+          <p class="label">Health</p>
+          <template lwc:if={hasHealth}>
+            <lightning-progress-bar value={healthScore} size="large"></lightning-progress-bar>
+            <p>{healthScore}/100 {healthWord}</p>
+          </template>
+          <template lwc:else>
+            <lightning-illustration variant="no_data:desert" size="extra-small"></lightning-illustration>
+            <p class="slds-text-color_weak">No score yet</p>
+          </template>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

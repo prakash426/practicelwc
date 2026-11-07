@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Opportunity Inline Editor (Mutations)" icon-name="standard:opportunity">
+        <div slot="actions">
+            <lightning-button label="New" variant="neutral" onclick={handleNew} icon-name="utility:add"></lightning-button>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template if:true={isLoading}><lightning-spinner alternative-text="Working" size="medium"></lightning-spinner></template>
+            <template if:true={hasRows}>
+                <lightning-datatable key-field="Id" data={rows} columns={columns}
+                    draft-values={draftValues} onsave={handleSave}
+                    onrowaction={handleRowAction} hide-checkbox-column></lightning-datatable>
+            </template>
+            <template if:false={hasRows}>
+                <template if:false={isLoading}>
+                    <div class="slds-align_absolute-center slds-p-around_large empty-state">
+                        <lightning-icon icon-name="utility:edit" size="large"></lightning-icon>
+                        <p class="slds-m-top_small">No opportunities. Click New to create one.</p>
+                    </div>
+                </template>
+            </template>
+            <template if:true={newOpen}>
+                <div class="slds-box slds-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">New Opportunity</h3>
+                    <lightning-input label="Name" value={newName} onchange={handleNewName} required></lightning-input>
+                    <lightning-input label="Amount" type="number" value={newAmount} onchange={handleNewAmount} class="slds-m-top_small"></lightning-input>
+                    <div class="slds-m-top_small">
+                        <lightning-button label="Cancel" onclick={handleNewCancel}></lightning-button>
+                        <lightning-button label="Create" variant="brand" onclick={handleCreate} class="slds-m-left_small"></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_error slds-m-top_medium" role="alert">
+                    <h2>Mutation failed</h2><p>{errorMessage}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

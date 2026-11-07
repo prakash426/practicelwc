@@ -1,0 +1,33 @@
+<template>
+  <lightning-card title="Project Download Center" icon-name="standard:file">
+    <div slot="actions">
+      <lightning-button
+        label="Export CSV"
+        icon-name="utility:download"
+        onclick={handleExport}
+        disabled={exportDisabled}
+      ></lightning-button>
+    </div>
+    <template lwc:if={hasRows}>
+      <lightning-datatable
+        key-field="Id"
+        data={projects}
+        columns={columns}
+        hide-checkbox-column
+      ></lightning-datatable>
+    </template>
+    <template lwc:elseif={hasError}>
+      <c-error-panel errors={error}></c-error-panel>
+    </template>
+    <template lwc:elseif={isLoaded}>
+      <c-empty-state-wrap
+        heading="No projects"
+        description="Create a project first, then export."
+        illustration-name="empty:no_data"
+      ></c-empty-state-wrap>
+    </template>
+    <template lwc:else>
+      <lightning-spinner alternative-text="Loading projects"></lightning-spinner>
+    </template>
+  </lightning-card>
+</template>

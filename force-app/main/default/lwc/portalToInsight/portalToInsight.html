@@ -1,0 +1,14 @@
+<template>
+  <lightning-card title="Portal to Insight" icon-name="standard:dashboard">
+    <div class="slds-p-horizontal_medium">
+      <template if:true={consentGranted}>
+        <p>Tiles: {tileCount}</p>
+        <template for:each={insights} for:item="i"><p key={i.label}>{i.label}: {i.value}</p></template>
+        <c-omnichannel-hub></c-omnichannel-hub>
+      </template>
+      <template if:false={consentGranted}>
+        <c-empty-state-wrap message="Consent required to view insights."></c-empty-state-wrap>
+      </template>
+    </div>
+  </lightning-card>
+</template>

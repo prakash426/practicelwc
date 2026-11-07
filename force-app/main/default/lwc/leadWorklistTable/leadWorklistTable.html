@@ -1,0 +1,34 @@
+<template>
+  <lightning-card title="New Lead Worklist" icon-name="standard:lead_list">
+    <div slot="actions">
+      <lightning-button-icon
+        icon-name="utility:refresh"
+        alternative-text="Refresh"
+        title="Refresh"
+        onclick={handleRefresh}
+      ></lightning-button-icon>
+    </div>
+    <template lwc:if={hasRows}>
+      <lightning-datatable
+        key-field="Id"
+        data={leads}
+        columns={columns}
+        onrowaction={handleRowAction}
+        hide-checkbox-column
+      ></lightning-datatable>
+    </template>
+    <template lwc:elseif={hasError}>
+      <c-error-panel errors={error}></c-error-panel>
+    </template>
+    <template lwc:elseif={isLoaded}>
+      <c-empty-state-wrap
+        heading="Queue clear"
+        description="No new leads. Nice work."
+        illustration-name="empty:no_data"
+      ></c-empty-state-wrap>
+    </template>
+    <template lwc:else>
+      <lightning-spinner alternative-text="Loading leads"></lightning-spinner>
+    </template>
+  </lightning-card>
+</template>

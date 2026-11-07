@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets><target>lightning__FlowAction</target><target>lightning__FlowScreen</target></targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowAction">
+            <property name="amount" type="Decimal" label="Amount" description="Pre-discount amount."/>
+            <property name="discountPercent" type="Decimal" label="Discount %" description="Discount 0-100."/>
+            <property name="total" type="Decimal" label="Total" description="Computed total output."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

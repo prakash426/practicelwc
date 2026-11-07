@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Case Timeline" icon-name="standard:task">
+        <div class="slds-p-horizontal_medium">
+            <template if:true={hasItems}>
+                <ul class="slds-timeline">
+                    <template for:each={items} for:item="item">
+                        <li key={item.Id}>
+                            <span class="slds-timeline__item">
+                                <span class="slds-media">
+                                    <span class="slds-media__body">
+                                        <p><strong>{item.Subject}</strong></p>
+                                        <p class="slds-text-body_small">{item.Status} - {item.ActivityDate}</p>
+                                    </span>
+                                </span>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:false={hasItems}><p class="slds-p-around_small">No activity yet.</p></template>
+            <template if:true={error}><p class="slds-text-color_error" role="alert">{errorMessage}</p></template>
+        </div>
+    </lightning-card>
+</template>

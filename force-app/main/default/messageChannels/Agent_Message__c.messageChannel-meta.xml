@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Agent Message</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Syncs console siblings: selected case, SLA ticks, macro results.</description>
+    <lightningMessageFields>
+        <fieldName>recordId</fieldName><description>Selected Case Id</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>kind</fieldName><description>case-selected | sla-tick | macro-done</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>payload</fieldName><description>Free-form JSON payload</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

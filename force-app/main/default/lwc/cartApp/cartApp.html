@@ -1,0 +1,7 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3"><c-cart-list oncartupdate={handleCartUpdate}></c-cart-list></div>
+        <div class="slds-col slds-size_1-of-3"><c-cart-summary></c-cart-summary></div>
+    </div>
+    <template if:true={lastUpdate}><p class="slds-m-top_small slds-text-body_small">Last update from: {lastUpdate}</p></template>
+</template>

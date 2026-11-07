@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+  <masterLabel>SearchTerm</masterLabel>
+  <isExposed>true</isExposed>
+  <description>Publishes a self-help search term from knowledgeFinder to caseCreator.</description>
+  <lightningMessageFields>
+    <fieldName>term</fieldName>
+    <description>The text the customer searched for.</description>
+  </lightningMessageFields>
+</LightningMessageChannel>
