@@ -1,0 +1,74 @@
+<template>
+  <lightning-card title="Project Intake" icon-name="standard:service_appointment">
+    <div class="slds-p-around_small">
+      <lightning-progress-indicator current-step={step} type="base" variant="base">
+        <lightning-progress-step label="Details" value="1"></lightning-progress-step>
+        <lightning-progress-step label="Budget" value="2"></lightning-progress-step>
+        <lightning-progress-step label="Review" value="3"></lightning-progress-step>
+      </lightning-progress-indicator>
+
+      <template lwc:if={isStep1}>
+        <lightning-input label="Project name" value={name} onchange={handleName} required></lightning-input>
+        <lightning-combobox
+          label="Status"
+          value={status}
+          options={statusOptions}
+          onchange={handleStatus}
+          class="slds-m-top_small"
+        ></lightning-combobox>
+      </template>
+
+      <template lwc:if={isStep2}>
+        <lightning-input
+          label="Budget (USD)"
+          type="number"
+          value={budget}
+          onchange={handleBudget}
+          min="0"
+          message-when-range-underflow="Budget cannot be negative."
+        ></lightning-input>
+      </template>
+
+      <template lwc:if={isStep3}>
+        <dl class="slds-dl_horizontal slds-m-bottom_small">
+          <dt class="slds-dl_horizontal__label">Name</dt>
+          <dd class="slds-dl_horizontal__detail">{name}</dd>
+          <dt class="slds-dl_horizontal__label">Status</dt>
+          <dd class="slds-dl_horizontal__detail">{status}</dd>
+          <dt class="slds-dl_horizontal__label">Budget</dt>
+          <dd class="slds-dl_horizontal__detail">{budgetDisplay}</dd>
+        </dl>
+        <template lwc:if={createdId}>
+          <lightning-file-upload
+            label="Attach supporting files"
+            record-id={createdId}
+            onuploadfinished={handleUploadFinished}
+            multiple
+          ></lightning-file-upload>
+          <lightning-button label="Open Project" variant="brand" onclick={handleOpen} class="slds-m-top_small"></lightning-button>
+        </template>
+      </template>
+
+      <template lwc:if={error}>
+        <c-error-panel errors={error} class="slds-m-top_small"></c-error-panel>
+      </template>
+
+      <div class="slds-m-top_medium nav">
+        <template lwc:if={canGoBack}>
+          <lightning-button label="Back" onclick={handleBack}></lightning-button>
+        </template>
+        <template lwc:if={canGoNext}>
+          <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </template>
+        <template lwc:if={isStep3}>
+          <template lwc:if={createdId}>
+            <span></span>
+          </template>
+          <template lwc:else>
+            <lightning-button label="Submit" variant="brand" onclick={handleSubmit} disabled={isBusy}></lightning-button>
+          </template>
+        </template>
+      </div>
+    </div>
+  </lightning-card>
+</template>

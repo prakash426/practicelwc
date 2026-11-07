@@ -1,0 +1,8 @@
+.success {
+  color: var(--slds-g-color-success-1, #2e844a);
+  font-weight: 700;
+}
+.hint {
+  color: var(--slds-g-color-neutral-2, #444);
+  font-style: italic;
+}

@@ -1,0 +1,40 @@
+<template>
+  <lightning-card title="Intake List Playground" icon-name="standard:events">
+    <div slot="actions">
+      <lightning-button
+        label={modeLabel}
+        onclick={toggleMode}
+        title="Toggle edit/preview mode"
+      ></lightning-button>
+    </div>
+    <template lwc:if={hasRows}>
+      <!-- One template, two handler maps: lwc:on rewires behavior on mode toggle -->
+      <div lwc:on={activeHandlers} class="slds-p-around_small">
+        <template for:each={rows} for:item="row">
+          <div key={row.id} class="row slds-p-vertical_x-small slds-border_bottom" data-id={row.id}>
+            <template lwc:if={editMode}>
+              <lightning-input
+                label={row.name}
+                value={row.draft}
+                data-id={row.id}
+                onchange={handleDraftInput}
+              ></lightning-input>
+            </template>
+            <template lwc:else>
+              <p><strong>{row.name}</strong> <span class="slds-text-color_weak">{row.status}</span></p>
+              <p class="slds-text-body_small">{row.note}</p>
+            </template>
+          </div>
+        </template>
+      </div>
+      <p class="slds-p-horizontal_small slds-text-color_weak">Last action: {lastAction}</p>
+    </template>
+    <template lwc:else>
+      <c-empty-state-wrap
+        heading="No projects"
+        description="Pass recordIds or add sample rows to play."
+        illustration-name="empty:no_data"
+      ></c-empty-state-wrap>
+    </template>
+  </lightning-card>
+</template>

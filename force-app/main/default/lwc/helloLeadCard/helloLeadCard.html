@@ -1,0 +1,15 @@
+<template>
+  <lightning-card title="Lead Greeting" icon-name="standard:lead">
+    <template lwc:if={hasLead}>
+      <p class="slds-p-horizontal_small slds-text-heading_small greeting">{greeting}</p>
+      <p class="slds-p-horizontal_small slds-text-color_weak">{companyLine}</p>
+    </template>
+    <template lwc:elseif={hasError}>
+      <c-error-panel errors={lead.error}></c-error-panel>
+    </template>
+    <template lwc:else>
+      <lightning-illustration variant="no_data:desert" size="small"></lightning-illustration>
+      <p class="slds-text-align_center slds-text-color_weak">Open this card on a Lead record to say hello.</p>
+    </template>
+  </lightning-card>
+</template>

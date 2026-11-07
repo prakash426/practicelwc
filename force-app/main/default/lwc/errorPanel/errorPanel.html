@@ -1,0 +1,17 @@
+<template>
+  <div class="slds-p-around_small" role="alert">
+    <template lwc:if={hasErrors}>
+      <lightning-card title="Something went wrong" icon-name="utility:error">
+        <ul class="slds-p-horizontal_small slds-list_dotted">
+          <template for:each={messages} for:item="msg">
+            <li key={msg}>{msg}</li>
+          </template>
+        </ul>
+      </lightning-card>
+    </template>
+    <template lwc:else>
+      <lightning-illustration variant="no_data:desert" size="small"></lightning-illustration>
+      <p class="slds-text-align_center slds-text-color_weak">No data to display.</p>
+    </template>
+  </div>
+</template>

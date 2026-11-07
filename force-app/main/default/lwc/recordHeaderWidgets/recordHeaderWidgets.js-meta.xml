@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <apiVersion>67.0</apiVersion>
+  <isExposed>true</isExposed>
+  <targets>
+    <target>lightning__RecordPage</target>
+    <target>lightning__HomePage</target>
+  </targets>
+  <targetConfigs>
+    <targetConfig targets="lightning__RecordPage,lightning__HomePage">
+      <property name="cardTitle" type="String" default="At a Glance" label="Card title" description="Heading shown above the widgets."/>
+      <property name="slaDeadline" type="String" label="SLA deadline" description="ISO date for the SLA countdown, e.g. 2026-12-01."/>
+      <property name="healthScore" type="Integer" label="Health score" description="Health score from 0 to 100. Blank shows the no-data illustration."/>
+      <property name="showSla" type="Boolean" default="true" label="Show SLA" description="Display the SLA countdown widget."/>
+      <property name="showHealth" type="Boolean" default="true" label="Show health" description="Display the health score widget."/>
+    </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

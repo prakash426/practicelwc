@@ -1,0 +1,46 @@
+<template>
+  <lightning-card title="Self-Help Finder" icon-name="standard:knowledge">
+    <div class="slds-p-around_small">
+      <lightning-input
+        type="search"
+        label="How can we help?"
+        value={term}
+        onchange={handleTermChange}
+        placeholder="Type a question, e.g. reset password"
+      ></lightning-input>
+    </div>
+    <template lwc:if={hasHits}>
+      <!-- lwc:on event map: result actions wired without template duplication -->
+      <div lwc:on={resultHandlers}>
+        <lightning-accordion active-section-name={openSection}>
+          <template for:each={hits} for:item="hit">
+            <lightning-accordion-section key={hit.recordId} name={hit.recordId} label={hit.title}>
+              <p class="slds-p-bottom_small">{hit.summary}</p>
+              <lightning-button
+                label="This helped"
+                data-id={hit.recordId}
+                data-action="helped"
+                onclick={handleResultClick}
+              ></lightning-button>
+              <lightning-button
+                label="Still stuck? Create a case"
+                variant="brand-outline"
+                data-id={hit.recordId}
+                data-action="escalate"
+                onclick={handleResultClick}
+                class="slds-m-left_small"
+              ></lightning-button>
+            </lightning-accordion-section>
+          </template>
+        </lightning-accordion>
+      </div>
+    </template>
+    <template lwc:elseif={hasSearched}>
+      <c-empty-state-wrap
+        heading="No articles found"
+        description="Try different words, or create a case below."
+        illustration-name="empty:no_data"
+      ></c-empty-state-wrap>
+    </template>
+  </lightning-card>
+</template>
