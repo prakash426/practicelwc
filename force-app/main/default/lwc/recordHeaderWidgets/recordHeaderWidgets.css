@@ -1,0 +1,20 @@
+.widgets {
+  display: flex;
+  gap: 1rem;
+}
+.widget {
+  flex: 1;
+}
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slds-g-color-neutral-2, #444);
+}
+.value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.overdue {
+  color: var(--slds-g-color-error-1, #ba0517);
+}
