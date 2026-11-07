@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LO2 demo host</title></head>
+<body>
+<script src="https://host/lightning/lightning.out.2.js"></script>
+<lightning-out-application endpoint="https://org.salesforce.com" token="OPAQUE_TOKEN"></lightning-out-application>
+<script>
+document.querySelector('lightning-out-application').addEventListener('ready', function () {
+  this.mount('c-lo2-embed', { contactId: '003x', theme: 'brand-b' }, document.getElementById('slot'));
+});
+</script>
+<div id="slot"></div>
+</body></html>
