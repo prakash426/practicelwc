@@ -1,0 +1,32 @@
+{
+  "name": "practicelwc",
+  "version": "1.0.0",
+  "description": "PracticeLWC: a 35-project leveled Lightning Web Components curriculum, from first component to architect capstones.",
+  "license": "MIT",
+  "author": "prakash426",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prakash426/practicelwc.git"
+  },
+  "scripts": {
+    "lint": "eslint force-app/main/default/lwc --ext .js,.html",
+    "lint:fix": "eslint force-app/main/default/lwc --ext .js,.html --fix",
+    "test:unit": "sfdx-lwc-jest -- --coverage",
+    "test:watch": "sfdx-lwc-jest -- --watch",
+    "test:ui": "wdio run utam/wdio.conf.js",
+    "prettier:verify": "prettier --check \"force-app/**/*.{js,html,css,xml,json}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
+    "prettier:write": "prettier --write \"force-app/**/*.{js,html,css,xml,json}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
+    "org:create": "sf org create scratch --definition-file config/project-scratch-def.json --alias practicelwc --duration-days 14 --set-default",
+    "org:push": "sf project deploy start --source-dir force-app",
+    "org:open": "sf org open",
+    "org:teardown": "sf org delete scratch --target-org practicelwc --no-prompt"
+  },
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^7.3.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

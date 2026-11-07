@@ -1,0 +1,4 @@
+# PracticeLWC forceignore: keep TypeScript authoring sources out of deploys.
+**/*.ts
+**/*.utam.json
+utam/**

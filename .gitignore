@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+.sfdx/
+.localdevserver/
+.sf/
+*.log
+.DS_Store
+*.local.json

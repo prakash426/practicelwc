@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, 'level/**', 'project/**']
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run prettier:verify
+      - run: npm run lint
+      - run: npm run test:unit
+
+  deploy-scratch:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    if: ${{ secrets.DEVHUB_SFDX_AUTH_URL != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g @salesforce/cli
+      - run: echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > /tmp/devhub.txt && sf org login sfdx-url --sfdx-url-file /tmp/devhub.txt --alias devhub
+      - run: sf org create scratch --definition-file config/project-scratch-def.json --alias ci --target-dev-hub devhub --duration-days 1 --no-namespace --set-default
+      - run: sf project deploy start --source-dir force-app --target-org ci
+      - run: sf apex run test --target-org ci --wait 10 --result-format human --code-coverage
