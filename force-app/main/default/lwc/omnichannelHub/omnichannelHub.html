@@ -1,0 +1,13 @@
+<template>
+  <lightning-card title="Omnichannel Hub" icon-name="standard:live_chat">
+    <div class="slds-p-horizontal_medium">
+      <lightning-emp-api channel={channel} onmessage={handleEvent}></lightning-emp-api>
+      <div class="slds-grid slds-gutters slds-m-bottom_small">
+        <div class="slds-col"><lightning-tile label="Bot" description={stats.bot}></lightning-tile></div>
+        <div class="slds-col"><lightning-tile label="Console" description={stats.console}></lightning-tile></div>
+        <div class="slds-col"><lightning-tile label="Portal" description={stats.portal}></lightning-tile></div>
+      </div>
+      <lightning-datatable key-field="Id" data={queue} columns={columns}></lightning-datatable>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+  <lightning-card title="Identity + Consent Console" icon-name="standard:partner_fund_claim">
+    <div class="slds-p-horizontal_medium">
+      <lightning-combobox label="Brand" value={brand} options={brands} onchange={handleBrand}></lightning-combobox>
+      <template if:true={hasData}>
+        <template for:each={consents} for:item="c">
+          <div key={c.contactId} class="slds-grid slds-gutters slds-p-vertical_x-small slds-border_bottom">
+            <div class="slds-col slds-size_1-of-2">{c.contactName} - {c.purpose}</div>
+            <div class="slds-col slds-size_1-of-2">
+              <lightning-input type="toggle" label="Opt in" checked={c.optIn} data-id={c.contactId} data-purpose={c.purpose} onchange={handleToggle}></lightning-input>
+            </div>
+          </div>
+        </template>
+      </template>
+      <template if:false={hasData}>
+        <c-error-panel friendly-message="No consents for this brand."></c-error-panel>
+      </template>
+    </div>
+  </lightning-card>
+</template>

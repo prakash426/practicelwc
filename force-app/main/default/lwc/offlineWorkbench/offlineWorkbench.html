@@ -1,0 +1,12 @@
+<template>
+  <lightning-card title="Offline Workbench" icon-name="standard:service_crew">
+    <div class="slds-p-horizontal_medium">
+      <lightning-input name="paramName" label="Parameter" value={paramName} onchange={handleInput}></lightning-input>
+      <lightning-input name="value" label="Reading" type="number" value={value} onchange={handleInput}></lightning-input>
+      <lightning-input name="threshold" label="Threshold" type="number" value={threshold} onchange={handleInput}></lightning-input>
+      <lightning-button label="Queue draft (offline-safe)" onclick={queueDraft} variant="brand" class="slds-m-top_small"></lightning-button>
+      <p class="slds-m-top_small">Queued: {drafts.length} | Breaches: {breachCount}</p>
+      <lightning-button label="Sync now" onclick={sync} variant="neutral"></lightning-button>
+    </div>
+  </lightning-card>
+</template>
