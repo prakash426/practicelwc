@@ -1,0 +1,20 @@
+<template>
+  <lightning-card title="Offline Technician" icon-name="standard:work_order">
+    <div class="slds-p-around_medium">
+      <template lwc:if={isOffline}><lightning-badge label="OFFLINE - drafts queued"></lightning-badge></template>
+      <template lwc:else><lightning-badge label="ONLINE"></lightning-badge></template>
+      <lightning-record-view-form record-id={recordId} object-api-name="WorkOrder" density="compact">
+        <lightning-output-field field-name="Subject"></lightning-output-field>
+        <lightning-output-field field-name="Status"></lightning-output-field>
+      </lightning-record-view-form>
+      <lightning-textarea label="Work notes (draft-safe)" value={draftNotes} onchange={handleNotes}></lightning-textarea>
+      <lightning-input type="file" label="Photo evidence" accept="image/*" onchange={handlePhoto}></lightning-input>
+      <div class="slds-m-top_small">
+        <lightning-button label="Save draft" onclick={saveDraft}></lightning-button>
+        <lightning-button label="Sync now" variant="brand" class="slds-m-left_small" onclick={syncNow} disabled={isOffline}></lightning-button>
+      </div>
+      <template lwc:if={conflict}><p class="slds-text-color_error slds-m-top_small">Conflict: server changed since draft. <lightning-button label="Keep mine" onclick={keepMine}></lightning-button> <lightning-button label="Take server" onclick={takeServer}></lightning-button></p></template>
+      <p class="slds-text-body_small slds-m-top_small">Queued drafts: {queueCount}</p>
+    </div>
+  </lightning-card>
+</template>

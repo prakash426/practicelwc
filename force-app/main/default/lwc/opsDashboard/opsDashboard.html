@@ -1,0 +1,10 @@
+<template>
+  <lightning-card title="Realtime Ops Dashboard" icon-name="standard:dashboard">
+    <div class="slds-p-around_medium">
+      <lightning-combobox label="Group by" value={groupBy} options={groupOptions} onchange={handleGroup}></lightning-combobox>
+      <div lwc:dom="manual" class="chart-host"></div>
+      <lightning-button label="Email PDF snapshot" onclick={handleSnapshot} class="slds-m-top_small"></lightning-button>
+      <p class="slds-text-body_small slds-m-top_small">Points: {pointCount} | Render: {renderMs}ms (lazy, paginated)</p>
+    </div>
+  </lightning-card>
+</template>

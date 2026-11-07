@@ -1,0 +1,20 @@
+<template>
+  <lightning-card title="Quote PDF Delivery" icon-name="standard:file">
+    <div class="slds-p-around_medium">
+      <lightning-record-view-form record-id={recordId} object-api-name="Quote" density="compact">
+        <lightning-output-field field-name="Name"></lightning-output-field>
+        <lightning-output-field field-name="Status"></lightning-output-field>
+        <lightning-output-field field-name="GrandTotal"></lightning-output-field>
+      </lightning-record-view-form>
+      <template lwc:if={generating}>
+        <lightning-empty-state header="Generating PDF..." description="Rendering branded template"></lightning-empty-state>
+      </template>
+      <template lwc:else>
+        <lightning-button label="Generate + Email PDF" variant="brand" onclick={handleGenerate}></lightning-button>
+        <template lwc:if={previewUrl}>
+          <a href={previewUrl} download="quote.pdf" class="slds-m-left_small">Download preview</a>
+        </template>
+      </template>
+    </div>
+  </lightning-card>
+</template>

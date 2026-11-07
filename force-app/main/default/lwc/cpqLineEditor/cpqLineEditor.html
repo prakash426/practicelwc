@@ -1,0 +1,9 @@
+<template>
+  <slot name="header"></slot>
+  <template for:each={lines} for:item="l">
+    <div key={l.id} class="slds-grid slds-gutters slds-m-bottom_x-small">
+      <div class="slds-col slds-size_1-of-2"><lightning-input label="Qty" type="number" value={l.qty} data-id={l.id} onchange={handleQty}></lightning-input></div>
+      <div class="slds-col slds-size_1-of-2"><lightning-input label="Discount %" type="number" value={l.discount} data-id={l.id} onchange={handleDisc}></lightning-input></div>
+    </div>
+  </template>
+</template>

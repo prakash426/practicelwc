@@ -1,0 +1,21 @@
+// TypeScript-authored LWC (Developer Preview). Compile to JS; deploy JS only.
+// Requires @salesforce/lightning-types (devDependency). tsc --strict clean.
+import { LightningElement, api } from 'lwc';
+interface GridRow { Id: string; [key: string]: unknown }
+interface GridColumn { label: string; fieldName: string; type?: string }
+export default class TypedDataGrid extends LightningElement {
+  @api objectApiName: string = 'Account';
+  @api columns: GridColumn[] = [];
+  rows: GridRow[] = [];
+  searchKey: string = '';
+  handleSearch(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.searchKey = target.value ?? '';
+    this.dispatchEvent(new CustomEvent('search', { detail: { key: this.searchKey } }));
+  }
+  get filteredRows(): GridRow[] {
+    const k = (this.searchKey ?? '').toLowerCase();
+    if (!k) return this.rows;
+    return this.rows.filter(r => Object.values(r).some(v => String(v ?? '').toLowerCase().includes(k)));
+  }
+}

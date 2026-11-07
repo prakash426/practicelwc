@@ -1,0 +1,9 @@
+<template>
+  <lightning-card title="Secure File Hub" icon-name="standard:file">
+    <div class="slds-p-around_medium">
+      <lightning-file-upload label="Upload" name="hubUpload" accept=".pdf,.csv,.png" record-id={recordId} onuploadfinished={handleUpload}></lightning-file-upload>
+      <lightning-datatable columns={cols} data={files} key-field="Id" hide-checkbox-column onrowaction={handleRow}></lightning-datatable>
+      <div lwc:dom="manual" class="safe-preview"></div>
+    </div>
+  </lightning-card>
+</template>
