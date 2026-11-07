@@ -1,0 +1,8 @@
+{
+  "elements": [
+    { "name": "nextButton", "selector": { "css": "lightning-button[data-action='next']" }, "type": "clickable" },
+    { "name": "totalLabel", "selector": { "css": "[data-testid='quote-total']" }, "type": "basic" },
+    { "name": "approveButton", "selector": { "css": "lightning-button[data-action='approve']" }, "type": "clickable" }
+  ],
+  "root": { "selector": { "css": "c-cpq-lite-wizard" } }
+}

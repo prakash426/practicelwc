@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "name": "approveBtn", "selector": { "css": "lightning-button[data-action='approve-row']" }, "type": "clickable" },
+    { "name": "commentBox", "selector": { "css": "lightning-textarea[data-testid='comment']" }, "type": "editable" }
+  ],
+  "root": { "selector": { "css": "c-approval-inbox" } }
+}

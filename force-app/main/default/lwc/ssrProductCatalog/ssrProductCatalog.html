@@ -1,0 +1,11 @@
+<template lwc:render-mode="light">
+  <article class="catalog">
+    <h1>Product Catalog</h1>
+    <ul>
+      <template for:each={products} for:item="p">
+        <li key={p.Id}><strong>{p.Name}</strong> - {p.Price}</li>
+      </template>
+    </ul>
+    <template lwc:if={empty}><p>No products found.</p></template>
+  </article>
+</template>

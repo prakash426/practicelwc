@@ -1,0 +1,9 @@
+<template>
+  <lightning-card title="Field Day Planner" icon-name="standard:service_appointment">
+    <div class="slds-p-around_medium">
+      <lightning-map map-markers={markers} zoom-level="11"></lightning-map>
+      <lightning-datatable columns={cols} data={appts} key-field="Id" hide-checkbox-column onrowaction={handleRowAction}></lightning-datatable>
+      <p class="slds-m-top_small slds-text-body_small">Live: {liveStatus}</p>
+    </div>
+  </lightning-card>
+</template>
