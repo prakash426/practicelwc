@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Agent Console Workspace" icon-name="standard:service_console">
+        <div class="slds-p-horizontal_medium">
+            <lightning-record-view-form record-id={recordId} object-api-name="Case" density="compact">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-3"><lightning-output-field field-name="CaseNumber"></lightning-output-field></div>
+                    <div class="slds-col slds-size_1-of-3"><lightning-output-field field-name="Subject"></lightning-output-field></div>
+                    <div class="slds-col slds-size_1-of-3"><lightning-output-field field-name="Status"></lightning-output-field></div>
+                </div>
+            </lightning-record-view-form>
+            <div class="slds-grid slds-gutters slds-m-top_medium">
+                <div class="slds-col slds-size_1-of-3"><c-sla-header record-id={recordId}></c-sla-header></div>
+                <div class="slds-col slds-size_1-of-3"><c-case-timeline record-id={recordId}></c-case-timeline></div>
+                <div class="slds-col slds-size_1-of-3"><c-macro-bar record-id={recordId} onmacroexecuted={handleMacro}></c-macro-bar></div>
+            </div>
+            <template if:true={lastMacro}><p class="slds-m-top_small" role="status">Last macro: {lastMacro}</p></template>
+        </div>
+    </lightning-card>
+</template>

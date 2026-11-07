@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets><target>lightning__RecordPage</target></targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects><object>Opportunity</object></objects>
+            <property name="flowApiName" type="String" default="Quote_Approval_Flow" label="Flow API Name" description="Screen flow to launch with context."/>
+            <property name="discountPercent" type="Integer" default="10" label="Discount %" description="Default discount passed to the flow."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

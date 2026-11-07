@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Discount Calculator" icon-name="utility:calculated_insights">
+        <div class="slds-p-horizontal_medium">
+            <lightning-input label="Amount" type="number" value={amount} onchange={handleAmount}></lightning-input>
+            <lightning-input label="Discount %" type="number" value={discountPercent} onchange={handleDiscount} class="slds-m-top_small"></lightning-input>
+            <p class="slds-m-top_small">Total: <strong>{total}</strong></p>
+            <p class="slds-text-body_small slds-m-top_x-small">Runs as an LWC local flow action: no Apex call.</p>
+        </div>
+    </lightning-card>
+</template>

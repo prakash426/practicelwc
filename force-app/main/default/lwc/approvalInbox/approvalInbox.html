@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Approval Inbox" icon-name="standard:approval">
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" onclick={handleRefresh}></lightning-button-icon>
+        </div>
+        <div class="slds-p-horizontal_medium">
+            <template if:true={isLoading}><lightning-spinner alternative-text="Loading requests" size="medium"></lightning-spinner></template>
+            <template if:true={hasRows}>
+                <lightning-datatable key-field="Id" data={requests} columns={columns}
+                    draft-values={draftValues} onsave={handleInlineSave}
+                    onrowaction={handleRowAction} hide-checkbox-column></lightning-datatable>
+            </template>
+            <template if:false={hasRows}>
+                <template if:false={isLoading}>
+                    <div class="slds-align_absolute-center slds-p-around_large empty-state">
+                        <lightning-icon icon-name="action:approval" size="large"></lightning-icon>
+                        <p class="slds-m-top_small">Inbox zero. No pending requests.</p>
+                    </div>
+                </template>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_error slds-m-top_medium" role="alert">
+                    <h2>Could not load inbox</h2><p>{errorMessage}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+    <template if:true={modalOpen}>
+        <c-approval-action-modal record-id={selectedId} action={selectedAction}
+            onclose={handleModalClose} ondecided={handleDecided}></c-approval-action-modal>
+    </template>
+</template>

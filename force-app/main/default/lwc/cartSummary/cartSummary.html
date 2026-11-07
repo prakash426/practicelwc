@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Order Summary" icon-name="standard:orders">
+        <div class="slds-p-horizontal_medium">
+            <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label">Lines</dt><dd class="slds-dl_horizontal__detail">{totals.lineCount}</dd>
+                <dt class="slds-dl_horizontal__label">Total Qty</dt><dd class="slds-dl_horizontal__detail">{totals.totalQty}</dd>
+                <dt class="slds-dl_horizontal__label">Amount</dt>
+                <dd class="slds-dl_horizontal__detail"><lightning-formatted-number value={totals.totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></dd>
+            </dl>
+            <p class="slds-text-body_small slds-m-top_small">Syncs instantly from shared state. No server refetch.</p>
+        </div>
+    </lightning-card>
+</template>
